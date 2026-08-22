@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تقرير فحص شامل - Land Rover Range Rover L405 2020</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a1a1a;
+  --accent: #005a2b;
+  --accent-dark: #003d1e;
+  --accent-light: #e6f5ec;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #7c3aed;
+  --info-light: #ede9fe;
+  --text: #1a1a1a;
+  --text-muted: #4b5563;
+  --bg: #f3f4f6;
+  --page-bg: #ffffff;
+  --border: #e5e7eb;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 10pt;
+}
+.page {
+  width: 210mm;
+  max-width: 210mm;
+  margin: 30px auto;
+  background: var(--page-bg);
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  min-height: 297mm;
+  overflow: hidden;
+}
+.content { padding: 22mm 18mm; }
+.report-header {
+  background: var(--page-bg);
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.logo-section { display: flex; align-items: center; gap: 12px; }
+.logo-section img.logo { height: 56px; width: auto; object-fit: contain; }
+.report-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.report-meta .date { font-size: 9pt; color: var(--text-muted); }
+.brand-text h1 { font-size: 18pt; font-weight: 900; color: var(--primary); margin-bottom: 2px; letter-spacing: 0.5px; }
+.brand-text p { font-size: 8.5pt; color: var(--text-muted); letter-spacing: 1px; }
+.report-title { text-align: center; margin-top: 4px; }
+.report-title h2 { font-size: 18pt; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+.report-title .subtitle { font-size: 10pt; color: var(--text-muted); font-weight: 400; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.info-card {
+  background: var(--page-bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.info-card .label { font-size: 8.5pt; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
+.info-card .value { font-size: 10.5pt; font-weight: 700; color: var(--primary); word-break: break-all; }
+.info-card.engine { border-top-color: var(--danger); background: #fef2f2; }
+/* Engine spec box */
+.engine-spec-box {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1.5px solid var(--danger);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.engine-spec-box .spec-title {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12pt; font-weight: 800; color: #991b1b; margin-bottom: 10px;
+}
+.engine-spec-box .spec-title::before { content: 'V8'; font-size: 10pt; background: #991b1b; color: white; padding: 2px 8px; border-radius: 4px; font-weight: 900; }
+.engine-spec-box .spec-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px;
+}
+.engine-spec-box .spec-item { background: white; border-radius: 6px; padding: 8px 10px; border: 1px solid #fecaca; }
+.engine-spec-box .spec-item .lbl { font-size: 8pt; color: #991b1b; font-weight: 600; margin-bottom: 2px; }
+.engine-spec-box .spec-item .val { font-size: 10pt; font-weight: 700; color: #7f1d1d; }
+.engine-spec-box p { font-size: 9.5pt; color: #7f1d1d; line-height: 1.8; }
+/* DTC severity summary */
+.severity-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+}
+.severity-card {
+  border-radius: 10px; padding: 14px 10px; text-align: center; border: 1.5px solid;
+}
+.severity-card .num { font-size: 22pt; font-weight: 900; display: block; margin-bottom: 2px; }
+.severity-card .lbl { font-size: 8.5pt; font-weight: 600; }
+.severity-card.history { background: #fefce8; border-color: #ca8a04; }
+.severity-card.history .num { color: #ca8a04; }
+.severity-card.intermittent { background: #fff7ed; border-color: #ea580c; }
+.severity-card.intermittent .num { color: #ea580c; }
+.severity-card.permanent { background: #fef2f2; border-color: var(--danger); }
+.severity-card.permanent .num { color: var(--danger); }
+.severity-card.clean { background: #f0fdf4; border-color: var(--success); }
+.severity-card.clean .num { color: var(--success); }
+/* Summary box */
+.summary-box {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1.5px solid var(--warning);
+  border-radius: 10px; padding: 16px; text-align: center; margin-bottom: 16px;
+}
+.summary-box .overall {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: white; padding: 8px 20px; border-radius: 40px;
+  box-shadow: 0 2px 8px rgba(217,119,6,0.15); margin-bottom: 8px;
+}
+.summary-box .overall .stars { font-size: 18pt; color: var(--warning); letter-spacing: 3px; }
+.summary-box .overall .text { font-size: 14pt; font-weight: 900; color: var(--warning); }
+.summary-box p { font-size: 10pt; color: #78350f; font-weight: 500; max-width: 95%; margin: 0 auto; }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+}
+.stat-card {
+  background: var(--page-bg); border: 1px solid var(--border);
+  border-top: 3px solid var(--accent); border-radius: 8px; padding: 12px 8px; text-align: center;
+}
+.stat-card .number { font-size: 16pt; font-weight: 900; color: var(--accent); display: block; margin-bottom: 2px; }
+.stat-card .unit { font-size: 8pt; color: var(--text-muted); }
+.section {
+  background: var(--page-bg); border-radius: 10px; padding: 14px;
+  margin-bottom: 12px; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); break-inside: avoid;
+}
+.section-title {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--border);
+}
+.section-title h3 { font-size: 12pt; font-weight: 800; color: var(--primary); }
+.section-title .subtitle { font-size: 8.5pt; color: var(--text-muted); }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 5px 12px; border-radius: 20px; font-size: 9pt; font-weight: 700;
+}
+.badge.pass { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.badge.fault { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.badge.history { background: #fefce8; color: #854d0e; border: 1px solid #fde047; }
+.badge.intermittent { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+.badge.permanent { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+.badge.info { background: var(--info-light); color: var(--info); border: 1px solid #c4b5fd; }
+.system-card { border-right: 4px solid var(--success); }
+.system-card.warning { border-right-color: var(--warning); }
+.system-card.danger { border-right-color: var(--danger); }
+.meta { font-size: 9pt; color: var(--text-muted); margin-bottom: 8px; }
+.dtc-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 9pt;
+}
+.dtc-table th, .dtc-table td { border: 1px solid var(--border); padding: 7px 9px; text-align: right; }
+.dtc-table th { background: #f9fafb; font-weight: 700; color: var(--primary); }
+.dtc-table tr.history-row { background: #fffbeb; }
+.dtc-table tr.intermittent-row { background: #fff7ed; }
+.dtc-table tr.permanent-row { background: #fef2f2; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+.data-table td { border-bottom: 1px solid var(--border); padding: 5px 8px; text-align: right; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .label { color: var(--text-muted); width: 60%; }
+.data-table .value { font-weight: 700; text-align: left; }
+.assessment {
+  background: #f9fafb; border-radius: 6px; padding: 10px;
+  font-size: 9.5pt; color: var(--text); line-height: 1.8;
+}
+.assessment.success { background: #f0fdf4; border-right: 4px solid var(--success); }
+.assessment.warning { background: #fffbeb; border-right: 4px solid var(--warning); }
+.assessment.danger { background: #fef2f2; border-right: 4px solid var(--danger); }
+.assessment.info { background: var(--info-light); border-right: 4px solid var(--info); }
+.assessment strong { font-weight: 700; }
+.assessment ul { margin: 6px 0 0 0; padding-right: 18px; }
+.assessment ul li { margin-bottom: 4px; }
+.assessment .cause-box {
+  background: white; border-radius: 6px; padding: 8px 10px; margin-top: 6px;
+  border-right: 3px solid var(--info);
+}
+.assessment .cause-box .cause-title { font-size: 9pt; font-weight: 700; color: var(--info); margin-bottom: 4px; }
+.assessment .cause-box .cause-text { font-size: 9pt; color: var(--text); }
+.extra-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.pass-chip {
+  background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0;
+  padding: 4px 10px; border-radius: 20px; font-size: 8.5pt; font-weight: 600;
+}
+.vin-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+.vin-table td { border: 1px solid var(--border); padding: 7px 9px; }
+.vin-table .label { background: #f9fafb; font-weight: 700; width: 65%; }
+.vin-table .value { font-weight: 700; word-break: break-all; }
+.rec-list { list-style: none; padding: 0; }
+.rec-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 12px; font-size: 9.5pt; line-height: 1.8;
+}
+.rec-list .num {
+  flex-shrink: 0; width: 22px; height: 22px;
+  background: var(--accent); color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 9pt;
+}
+.rec-list .num.danger { background: var(--danger); }
+.rec-list .num.warning { background: var(--warning); }
+.rec-list .num.info { background: var(--info); }
+.final-box {
+  background: #fffbeb; border: 1.5px solid var(--warning);
+  border-radius: 10px; padding: 16px; text-align: center;
+}
+.final-box h3 { font-size: 13pt; color: var(--warning); margin-bottom: 8px; }
+.final-box p { font-size: 9.5pt; color: #78350f; line-height: 1.7; }
+.footer {
+  margin-top: 20px; text-align: center; font-size: 8.5pt;
+  color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 10px;
+}
+@media print { body { background: white; } .page { margin: 0; box-shadow: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="content">
+    <div class="report-header">
+      <div class="header-top">
+        <div class="logo-section">
+          <img src="data:image/png;base64,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90bXrl3Rpk0bUR3XzC1btmDTpk3YsGEDdu7cif3791daoLfZbOjYsSP69euH7OxszJ07t9JozTRNOBwOXH311bj77rtx8cUX8wNXQw4fPkSakCj3epC1dy+87nKYPh8OHM6By+VCYr26EBZgESE2NhYNGjSAy+VCvXr1zvi1X7lyJa1fvx4FBQXh9bbk5GR069atxiapwsJCqg3R+/bbb2natGlYuHBh2MQVWlS3LKtSLfuJEyfi8ccf53saXNL2rFTUe+ihhyrl+vm1pHGhbKLHFuARQlCHDh3or3/9K82cOZN2795drZQMu3btoo8//phuvfVWat++PdlsthMW6QFAzz33HK1fvz68nw8//JBSUlJI07RwZlohBI0dO5ZSU1M5RcQfqWpmWhqNHz/+uISIx27nnXceTZgwISJ5s2pjO3z4ML3//vvUr1+/Ss9j6B4PPYejR4+mgnO8eienMvkdceDAAXrttdfwwQcfoKio6FcX8E7mchgfH4+ePXti8ODB6N+/Pzp37lytUdD3339PixcvxvLly7F582aUlZXh2AXEkMuvlBI+nw9vvPEGHnzwQRHyu7/55puxcOHC40xVEyZMQO/evSNmYli+fDlSU1ORl5cHv98Pu92OqKgoJCYmolOnTujevXvETBpM9XjiiSfo1VdfDWcVaNiwIbp06YKkpCRIKeF2u5Gbm4uMjAzs2bMnfC//5z//wc0333zOfnebNm2i6dOnY/bs2cjKygrPSmw2G7xeL9q3b49PP/0UF1xwAd9/PAOpve3f//43JSUlVUrmduxs42R1EFq0aEF33HEHzZ49mw7UID37woUL6S9/+Qu1aNHiuFFhkyZNKDo6ulJ1OClleLT19ttvh/f7008/UZs2bcLlWgFQXFxcRKu+zZo1iwYPHnzC2dCxm8PhoIEDB9L06dN5NHiGt5ycHOrdu3c4I++9995LS5Ys+dX07ps3b6bnn3+ekpOTCQD99a9/Pee/t8LCQpo6dSr179+/kmUAAMXExNDUqVP53uNsvJHfli1bRp07dz6pcFQsdlNx69ChA/3tb3+jZcuW1ejGXLx4Md15553HmRWklOR0Oqldu3b0/vvv09KlSyk2NpZsNls402noOCdNmkQVU68fK3CjRo2KWAr27777jnr16lXtLKvdunWjL774gh/mM1G3Zv9+atq0KdlsNnrh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" alt="Auto Renew" class="logo">
+          <div class="brand-text">
+            <h1>AUTO RENEW</h1>
+            <p>خدمات السيارات المتكاملة — خبراء الفحص والتشخيص</p>
+          </div>
+        </div>
+        <div class="report-meta">
+          <div class="badge" style="background:var(--accent-light);color:var(--accent);border:1px solid var(--accent);">تقرير تشخيصي شامل</div>
+          <div class="date">22 August 2026</div>
+        </div>
+      </div>
+      <div class="report-title">
+        <h2>تقرير فحص كمبيوتر شامل — Range Rover L405 V8 SC</h2>
+        <div class="subtitle">Land Rover Diagnostic Report — 2020 — AJ133 5.0L Supercharged V8</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card"><div class="label">الشركة المصنعة</div><div class="value">Land Rover (Jaguar Land Rover — JLR)</div></div>
+      <div class="info-card"><div class="label">الموديل</div><div class="value">New Range Rover (L405) — 2020</div></div>
+      <div class="info-card engine"><div class="label">المحرك</div><div class="value" style="color:#991b1b;">AJ133 — 5.0L V8 Supercharged (508 PS)</div></div>
+      <div class="info-card"><div class="label">سنة الصنع</div><div class="value">2020</div></div>
+      <div class="info-card"><div class="label">VIN</div><div class="value">SALGS2SE4LA590806</div></div>
+      <div class="info-card"><div class="label">رقم اللوحة</div><div class="value">— (غير مسجل)</div></div>
+      <div class="info-card engine"><div class="label">المسافة (Odometer)</div><div class="value" style="color:#991b1b;">40,918 km</div></div>
+      <div class="info-card"><div class="label">رقم التقرير (Report ID)</div><div class="value">MAXIA20260822042712</div></div>
+      <div class="info-card"><div class="label">جهاز الفحص</div><div class="value">Autel MaxiSys Ultra S2 — V4.70</div></div>
+      <div class="info-card"><div class="label">Serial Number (Scanner)</div><div class="value">V37GSCV01299</div></div>
+    </div>
+
+    <!-- Engine Spec Box -->
+    <div class="engine-spec-box">
+      <div class="spec-title">المواصفات التقنية للمحرك — AJ133 5.0L V8 Supercharged</div>
+      <div class="spec-grid">
+        <div class="spec-item"><div class="lbl">نوع المحرك</div><div class="val">AJ133 — V8 90° Supercharged</div></div>
+        <div class="spec-item"><div class="lbl">السعة</div><div class="val">4,999 سم³ (5.0 لتر)</div></div>
+        <div class="spec-item"><div class="lbl">القوة القصوى</div><div class="val">508 PS (375 kW) @ 6,000 rpm</div></div>
+        <div class="spec-item"><div class="lbl">العزم الأقصى</div><div class="val">625 Nm @ 2,500 rpm</div></div>
+        <div class="spec-item"><div class="lbl">نسبة الانضغاط</div><div class="val">9.5:1 (نسخة Supercharged)</div></div>
+        <div class="spec-item"><div class="lbl">عدد الصمامات</div><div class="val">32 صمام (4 لكل أسطوانة) — DOHC</div></div>
+        <div class="spec-item"><div class="lbl">نوع الحقن</div><div class="val">حقن مباشر (Direct Injection — GDI)</div></div>
+        <div class="spec-item"><div class="lbl">السوبرتشارجر</div><div class="val">Roots-type (Eaton TVS) — في الوادي</div></div>
+        <div class="spec-item"><div class="lbl">توقيت الكامات</div><div class="val">VCT متغير لكل 4 كامات</div></div>
+        <div class="spec-item"><div class="lbl">المادة</div><div class="val">ألمنيوم كامل (Block + Heads)</div></div>
+        <div class="spec-item"><div class="lbl">ناقل الحركة</div><div class="val">ZF 8HP — 8 سرعات أوتوماتيك</div></div>
+        <div class="spec-item"><div class="lbl">الدفع</div><div class="val">ربع دفع (AWD) — Transfer Case</div></div>
+      </div>
+      <p>
+        <strong>عن محرك AJ133:</strong> محرك بريطاني الصنع من تطوير Jaguar Land Rover، جميع مكوناته الهيكلية من الألمنيوم لتقليل الوزن. السوبرتشارجر من نوع Roots (Eaton TVS) مثبّت في وادي المحرك بين صفوف الأسطوانات، مدفوع مباشرة من العمود المرفقي بحزام — يوفر ضغط فوري بدون تأخير (عكس التيربو). عزم 625 Nm متاح من 2,500 rpm فقط — أداء فوري في جميع السرعات. محرك GDI مع VCT على كل الكامات الأربع لتحسين الكفاءة والاستهلاك.
+      </p>
+    </div>
+
+    <!-- DTC Severity Summary -->
+    <div class="severity-grid">
+      <div class="severity-card clean">
+        <span class="num">42</span>
+        <span class="lbl">نظام تم فحصه</span>
+      </div>
+      <div class="severity-card history">
+        <span class="num">15</span>
+        <span class="lbl">كود تاريخي (History)<br><small style="font-weight:400;">أحداث سابقة — ليست حالية</small></span>
+      </div>
+      <div class="severity-card intermittent">
+        <span class="num">2</span>
+        <span class="lbl">كود متقطع (Intermittent)<br><small style="font-weight:400;">يظهر أحياناً</small></span>
+      </div>
+      <div class="severity-card permanent">
+        <span class="num">10</span>
+        <span class="lbl">كود دائم (Permanent)<br><small style="font-weight:400;">يتطلب إصلاح</small></span>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div class="overall">
+        <span class="stars">★★★★☆</span>
+        <span class="text">جيد جداً — مع ملاحظات صيانة</span>
+      </div>
+      <p>
+        السيارة في حالة ميكانيكية جيدة جداً — لا توجد أعطال حالية في المحرك أو ناقل الحركة أو الفرامل أو الوسائد الهوائية. معظم الأكواد (15 من 27) <strong>تاريخية (History)</strong> — أحداث سابقة تم مسحها ذاتياً أو لم تعد تتكرر، ولا تمثل مشكلة حالية. الأكواد الدائمة (10) تتركّز في نظام التيليماتكس (6 أكواد هوائيات) ونظام المقعد الكهربائي (2) ومحاذاة رادار التحكم بالسرعة (1) وإعداد البرمجيات (1) — جميعها أنظمة راحة ومساعدة، <strong>ولا تؤثر على سلامة القيادة أو أداء المحرك</strong>.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><span class="number" style="color:var(--success);">42</span><span class="unit">نظام مفحوص</span></div>
+      <div class="stat-card"><span class="number" style="color:var(--danger);">27</span><span class="unit">إجمالي الأكواد</span></div>
+      <div class="stat-card"><span class="number" style="color:var(--danger);">10</span><span class="unit">أكواد دائمة</span></div>
+      <div class="stat-card"><span class="number" style="color:var(--success);">31</span><span class="unit">نظام سليم (0 DTC)</span></div>
+    </div>
+
+    <!-- ====== PCM (Engine) ====== -->
+    <div class="section system-card">
+      <div class="section-title">
+        <h3>1. وحدة التحكم بالقوة (PCM — Powertrain Control Module)</h3>
+        <span class="badge history">2 كود — تاريخي</span>
+      </div>
+      <div class="meta">عدد الأكواد: 2 (كلاهما History — تاريخي)</div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="history-row">
+            <td><strong>P0230-19</strong></td>
+            <td>Fuel pump primary circuit fault — Circuit current above threshold<br><small style="color:#666;">عطل في دائرة مضخة الوقود الأساسية — تيار أعلى من الحد</small></td>
+            <td><span class="badge history">History</span></td>
+          </tr>
+          <tr class="history-row">
+            <td><strong>P0457-76</strong></td>
+            <td>EVAP control system leak detected with fuel cap off — Incorrect mounting position<br><small style="color:#666;">تسرب نظام EVAP — غطاء الوقود غير مثبت بشكل صحيح</small></td>
+            <td><span class="badge history">History</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="assessment warning">
+        <strong>التحليل الفني — كود P0230 (مضخة الوقود):</strong>
+        <div class="cause-box">
+          <div class="cause-title">السبب الأرجح:</div>
+          <div class="cause-text">
+            كود تاريخي — حدث في الماضي ولم يعد متكرراً. في Range Rover L405، مضخة الوقود تُدار عبر وحدة تحكم منفصلة (Fuel Pump Driver Module — FPDM) وريلاي. الكود يشير إلى أن تيار الدائرة تجاوز الحد المسموح لحظياً. الأسباب الشائعة:
+            <ul>
+              <li><strong>ريلاي مضخة الوقود:</strong> تلامس متقطع في الريلاي — شائع في LR عند ارتفاع حرارة المقصورة</li>
+              <li><strong>FPDM (Fuel Pump Driver Module):</strong> وحدة تحكم مضخة الوقود — معروفة بأعطال الحرارة في LR</li>
+              <li><strong>تذبذب الجهد:</strong> عند ضعف بطارية 12V أو تبديلها، قد يظهر الكود مؤقتاً</li>
+            </ul>
+            بما أنه <strong>History</strong>، فالمضخة تعمل حالياً بشكل طبيعي ولا يوجد عطل فعلي. يُنصح بمراقبة الأداء، وإذا تكرر الكود يُفحص الريلاي و FPDM.
+          </div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>التحليل الفني — كود P0457 (EVAP / غطاء الوقود):</strong>
+        <div class="cause-box">
+          <div class="cause-title">السبب الأرجح:</div>
+          <div class="cause-text">
+            كود تاريخي و<u>غير خطير إطلاقاً</u>. هذا الكود يعني حرفياً أن <strong>غطاء الوقود كان غير مثبت بشكل صحيح</strong> عند تشغيل المحرك — عادةً بعد التعبئة مباشرة. النظام كشف تسرباً في EVAP لأن الغطاء wasn't sealed. الأسباب:
+            <ul>
+              <li>تعبئة الوقود والمحرك يعمل (يجب إطفاء المحرك عند التعبئة)</li>
+              <li>عدم إحكام غطاء الوقود بعد التعبئة (نقرة واحدة على الأقل)</li>
+              <li>غطاء وقود تالف أو حلقة مطاطية بالية</li>
+            </ul>
+            بما أنه <strong>History</strong>، تم إحكام الغطاء لاحقاً والنظام عاد للعمل الطبيعي. <strong>لا يوجد عطل فعلي</strong> — مجرد حدث تشغيلي سابق.
+          </div>
+        </div>
+      </div>
+      <div class="assessment success" style="margin-top:6px;">
+        <strong>التقييم النهائي للـ PCM:</strong> المحرك يعمل بشكل طبيعي وسليم. كودا المضخة و EVAP تاريخيان ولا يمثلان عطلاً حالياً. لا يوجد كود حالي (Current) في وحدة المحرك — أداء المحرك V8 SC سليم.
+      </div>
+    </div>
+
+    <!-- ====== TCU (Telematics) — 6 Permanent ====== -->
+    <div class="section system-card danger">
+      <div class="section-title">
+        <h3>2. وحدة التيليماتكس (TCU — Telematic Control Unit)</h3>
+        <span class="badge permanent">6 أكواد — دائمة</span>
+      </div>
+      <div class="meta">عدد الأكواد: 6 (جميعها Permanent — دائمة)</div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="permanent-row"><td><strong>B14B5-13</strong></td><td>Wi-Fi Antenna #1 — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B1A56-13</strong></td><td>Antenna — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B1D55-13</strong></td><td>Antenna #2 — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B119F-13</strong></td><td>GPS Antenna — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B14A9-13</strong></td><td>BroadR-Reach Link — Telematics (+) — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B14AA-13</strong></td><td>BroadR-Reach Link — Telematics (-) — Open circuit</td><td><span class="badge permanent">Permanent</span></td></tr>
+        </tbody>
+      </table>
+      <div class="assessment danger">
+        <strong>التحليل الفني:</strong>
+        جميع الأكواد الستة هي <strong>"Open Circuit" (دائرة مفتوحة)</strong> — أي أن الهوائيات أو الكابلات <strong>غير متصلة</strong>، وليس أن الوحدات معطلة. هذا نمط واضح ومتكرر جداً في Range Rover المستوردة، خصوصاً في الشرق الأوسط.
+        <div class="cause-box">
+          <div class="cause-title">الأسباب الأرجح (مرتبة حسب الاحتمالية):</div>
+          <div class="cause-text">
+            <ul>
+              <li><strong>1. عدم تفعيل اشتراك التيليماتكس (الأكثر احتمالاً):</strong> في Land Rover، نظام التيليماتكس (InControl) يتطلب اشتراكاً مفعّلاً من الوكيل. السيارات المستوردة خارج الوكيل الرسمي غالباً لا يكون الاشتراك مفعّلاً فيها، فتظهر هذه الأكواد لأن الوحدة لا تتصل بالشبكة.</li>
+              <li><strong>2. فصل هوائيات التيليماتكس:</strong> في بعض السيارات المستوردة، يقوم المورّد بفصل هوائيات GPS و Wi-Fi والخلوي من وحدة TCU لمنع التتبع أو لأسباب جمركية — تاركاً الكابلات غير متصلة.</li>
+              <li><strong>3. تآكل كابل هوائي الزعنفة (Shark Fin):</strong> هوائي GPS و Wi-Fi مدمج في زعنفة السقف. في سيارات 2020 بـ 40,000 كم، قد يتآكل الكابل أو يتلف من غسيل السيارة بالآلة أو فك السقف.</li>
+              <li><strong>4. فصل وحدة TCU نفسها:</strong> قد تكون الوحدة غير متصلة بالكامل — كابل BroadR-Reach (الإيثرنت الخاص بـ JLR) غير موصول.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cause-box" style="border-right-color:var(--success);">
+          <div class="cause-title" style="color:var(--success);">هل يؤثر على القيادة؟</div>
+          <div class="cause-text">
+            <strong>لا — إطلاقاً.</strong> نظام التيليماتكس مسؤول عن: تطبيق Land Rover InControl على الهاتف، تتبع السيارة، الاتصال بالطوارئ (eCall)، نقطة Wi-Fi. جميعها ميزات راحة واتصال — لا تؤثر على المحرك أو الفرامل أو القيادة. السيارة تقود بشكل طبيعي تماماً بدونها.
+          </div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>الإصلاح الموصى به:</strong> فحص كابلات الهوائيات في الصندوق الخلفي (حيث توجد وحدة TCU) — التأكد من اتصال جميع الكابلات. إذا كانت متصلة، فالمشكلة في اشتراك InControl — يُفعّل من وكيل Land Rover. تكلفة الفحص منخفضة، والإصلاح غالباً مجرد إعادة توصيل كابلات.
+      </div>
+    </div>
+
+    <!-- ====== PSM (Passenger Seat) — 2 Permanent ====== -->
+    <div class="section system-card danger">
+      <div class="section-title">
+        <h3>3. وحدة مقعد الراكب الأمامي (PSM — Passenger Seat Module)</h3>
+        <span class="badge permanent">2 كود — دائم</span>
+      </div>
+      <div class="meta">عدد الأكواد: 2 (كلاهما Permanent) — <span style="color:var(--danger);font-weight:700;">رُصد إصلاح سابق في المقعد</span></div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="permanent-row"><td><strong>B1087-88</strong></td><td>LIN bus A — Bus off<br><small style="color:#666;">ناقل LIN A — الناقل متوقف</small></td><td><span class="badge permanent">Permanent</span></td></tr>
+          <tr class="permanent-row"><td><strong>B1545-87</strong></td><td>Front seat massage control module — Missing message<br><small style="color:#666;">وحدة تحكم تدليك المقعد الأمامي — رسالة مفقودة</small></td><td><span class="badge permanent">Permanent</span></td></tr>
+        </tbody>
+      </table>
+
+      <!-- Physical Inspection Finding -->
+      <div class="assessment danger" style="border-right:5px solid var(--danger); background:#fef2f2;">
+        <strong>🔍 نتيجة الفحص الفيزيائي (Physical Inspection):</strong>
+        <div class="cause-box" style="border-right-color:var(--danger); background:#fff5f5;">
+          <div class="cause-title" style="color:var(--danger);">⚠ رصد إصلاح سابق في المقعد الأمامي</div>
+          <div class="cause-text">
+            أثناء الفحص الفيزيائي للسيارة، <strong>تم الكشف عن عملية إصلاح سابقة في المقعد الأمامي</strong> — آثار فك وإعادة تركيب واضحة على المقعد، تشمل:
+            <ul style="margin-top:6px; padding-right:18px;">
+              <li>آثار براغي مفكوكة / إعادة تركيب غير أصلية على هيكل المقعد</li>
+              <li>علامات تدخل في كابلات المقعد (كابل LIN و كابلات مقعد التكييف)</li>
+              <li>موصلات قد لا تكون موصولة بالكامل أو بشكل صحيح</li>
+            </ul>
+            <strong>هذا الاكتشاف يفسّر بشكل قاطع جميع الأكواد المرتبطة بالمقعد:</strong>
+            <ul style="margin-top:6px; padding-right:18px;">
+              <li><strong>B1087-88 (LIN bus A — Bus off):</strong> كابل LIN تحت المقعد انقطع أو لم يُعد توصيله بشكل صحيح بعد الإصلاح</li>
+              <li><strong>B1545-87 (Massage module — Missing message):</strong> وحدة التدليك لا تتلقى رسائل لأن ناقل LIN متوقف</li>
+              <li><strong>B1417-15 في HVAC (حساس حرارة مقعد التكييف):</strong> نفس السبب — كابل حساس مقعد التكييف تأثر بالإصلاح</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="assessment danger" style="margin-top:8px;">
+        <strong>التحليل الفني:</strong>
+        الكودان مرتبطان — LIN bus A متوقف، وبسبب ذلك لا تستطيع وحدة التحكم بالتدليك التواصل. هذا يعني أن <strong>وحدة تدليك مقعد الراكب لا تعمل</strong> (ميزة الراحة في Range Rover). <strong>السبب المؤكد:</strong> الإصلاح السابق في المقعد أدى إلى انقطاع أو خلع كابل LIN — وهو ما يفسّر الكودين معاً وكذلك كود HVAC المرتبط بحساس حرارة مقعد التكييف.
+        <div class="cause-box">
+          <div class="cause-title">السيناريو الأرجح (مؤكد بالفحص الفيزيائي):</div>
+          <div class="cause-text">
+            <ul>
+              <li><strong>1. فُكّ المقعد لإصلاح سابق</strong> (تنظيف، صبغ، تبديل قطعة، إصلاح محرك المقعد، إلخ)</li>
+              <li><strong>2. أثناء الفك/التركيب، انقطع أو خُلع كابل LIN</strong> الواصل بين وحدة PSM ووحدة التدليك</li>
+              <li><strong>3. كذلك تأثر كابل حساس حرارة مقعد التكييف</strong> (الموجود في نفس المنطقة تحت المقعد)</li>
+              <li><strong>4. لم تُفحص الكابلات بعد الإصلاح</strong> — أو تم التركيب بدون إعادة توصيل جميع الموصلات</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cause-box" style="border-right-color:var(--success);">
+          <div class="cause-title" style="color:var(--success);">هل يؤثر على القيادة؟</div>
+          <div class="cause-text"><strong>لا.</strong> ميزة التدليك ومقعد التكييف هي ميزات راحة فاخرة. لا تؤثر على سلامة المقعد أو الوسائد الهوائية (الوسائد لها نظام مستقل — RCM سليم بدون أي كود).</div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>الإصلاح الموصى به:</strong> رفع مقعد الراكب الأمامي بالكامل، فحص شامل لجميع كابلات LIN والموصلات تحت المقعد — إعادة توصيل كابل LIN الرئيسي + كابل حساس حرارة مقعد التكييف. يُنصح بفحص جميع الموصلات تحت المقعد وليس فقط الكابل المعطّل، لأن الإصلاح السابق قد يكون أثّر على كابلات أخرى. تكلفة منخفضة (1–2 ساعة عمل) إذا كانت المشكلة في الكابلات فقط. <strong>يجب مسح الأكواد بعد الإصلاح وإعادة فحص النظام</strong> للتأكد من عودة ناقل LIN للعمل ووحدة التدليك تتلقى رسائلها.
+      </div>
+    </div>
+
+    <!-- ====== CCM (Cruise Control) — 1 Permanent ====== -->
+    <div class="section system-card danger">
+      <div class="section-title">
+        <h3>4. وحدة التحكم بالسرعة (CCM — Cruise Control Module)</h3>
+        <span class="badge permanent">1 كود — دائم</span>
+      </div>
+      <div class="meta">عدد الأكواد: 1 (Permanent)</div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="permanent-row">
+            <td><strong>C1A67-78</strong></td>
+            <td>Forward looking sensor — Alignment or adjustment incorrect<br><small style="color:#666;">حساس الرؤية الأمامي — محاذاة أو ضبط غير صحيح</small></td>
+            <td><span class="badge permanent">Permanent</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="assessment danger">
+        <strong>التحليل الفني:</strong>
+        هذا الكود يخص <strong>رادار التحكم التكيّفي بالسرعة (Adaptive Cruise Control — ACC)</strong> — الحساس الأمامي (Forward-Looking Sensor) في المصد الأمامي. الرادار <strong>غير محاذى بشكل صحيح</strong>، مما يعني أن نظام ACC قد لا يعمل أو يعمل بشكل غير دقيق.
+        <div class="cause-box">
+          <div class="cause-title">الأسباب الأرجح:</div>
+          <div class="cause-text">
+            <ul>
+              <li><strong>1. فك أو استبدال المصد الأمامي (الأكثر شيوعاً):</strong> إذا فُكّ المصد الأمامي لأي سبب (صيانة، تكييف، تبديل حساسات)، يجب إعادة محاذاة الرادار باستخدام جهاز خاص. عدم المحاذاة يُفعّل هذا الكود.</li>
+              <li><strong>2. اصطدام خفيف في المصد:</strong> حتى اصطدام بسيط (مواقف) قد يزاح الرادار قليلاً.</li>
+              <li><strong>3. القيادة على طرق وعرة:</strong> اهتزازات قوية قد تزاح الرادار مع الوقت.</li>
+              <li><strong>4. استبدال الرادار بدون محاذاة:</strong> إذا استُبدل الحساس ولم تُعمل المحاذاة (Calibration).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cause-box" style="border-right-color:var(--success);">
+          <div class="cause-title" style="color:var(--success);">هل يؤثر على القيادة؟</div>
+          <div class="cause-text">
+            <strong>لا يؤثر على السلامة الأساسية</strong> — الفرامل والمحرك سليمان. لكن <strong>نظام التحكم التكيّفي بالسرعة (ACC) معطّل</strong> حتى تُعمل المحاذاة. التحكم العادي بالسرعة (Cruise Control) قد يعمل أو لا يعمل حسب النظام.
+          </div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>الإصلاح الموصى به:</strong> محاذاة رادار ACC عند وكيل Land Rover أو ورشة متخصصة بجهاز محاذاة الرادار (مثل Autel MaxiSys مع ملحق المحاذاة، أو جهاز JLR SDD/Pathfinder). المحاذاة تستغرق 30–60 دقيقة. <strong>لا يمكن تجاهل هذا الكود</strong> لأنه دائم ويُعطّل ميزة ACC.
+      </div>
+    </div>
+
+    <!-- ====== BCM (Body Control) — 3 DTCs ====== -->
+    <div class="section system-card warning">
+      <div class="section-title">
+        <h3>5. وحدة التحكم بالهيكل (BCM — Body Control Module)</h3>
+        <span class="badge permanent">3 أكواد (2 History + 1 Permanent)</span>
+      </div>
+      <div class="meta">عدد الأكواد: 3</div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="history-row"><td><strong>B1DD1-87</strong></td><td>Task light module A — Missing message</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td><strong>B1DD2-87</strong></td><td>Task light module B — Missing message</td><td><span class="badge history">History</span></td></tr>
+          <tr class="permanent-row"><td><strong>U2300-62</strong></td><td>Central configuration — Signal comparison fault<br><small style="color:#666;">الإعداد المركزي — خطأ مقارنة الإشارة</small></td><td><span class="badge permanent">Permanent</span></td></tr>
+        </tbody>
+      </table>
+      <div class="assessment warning">
+        <strong>التحليل الفني — B1DD1 / B1DD2 (Task Light Modules):</strong>
+        <div class="cause-box">
+          <div class="cause-title">السبب (تاريخي — غير حالي):</div>
+          <div class="cause-text">
+            كودان تاريخيان لـ "وحدات إضاءة المهام" (Task Light Modules) — رسالة مفقودة على ناقل CAN. هذا حدث سابق، على الأرجح عند فصل البطارية أو إعادة تشغيل النظام. <strong>لا يمثل عطلاً حالياً</strong> — الإضاءة تعمل.
+          </div>
+        </div>
+      </div>
+      <div class="assessment danger" style="margin-top:6px;">
+        <strong>التحليل الفني — U2300-62 (Central Configuration):</strong>
+        <div class="cause-box">
+          <div class="cause-title">السبب الأرجح:</div>
+          <div class="cause-text">
+            كود دائم — "خطأ مقارنة الإشارة" في الإعداد المركزي. في Land Rover، الإعداد المركزي (Central Configuration) هو ملف برمجي يخزّن مواصفات السيارة (الإضافات، الموديل، المنطقة). الكود يعني أن هناك <strong>عدم تطابق</strong> بين الإعداد المخزّن والإعداد الفعلي.
+            <ul>
+              <li><strong>1. تبديل بطارية 12V بدون حفظ الإعدادات:</strong> شائع جداً — عند فصل البطارية، قد تُفقد بعض الإعدادات</li>
+              <li><strong>2. تحديث برمجي غير مكتمل:</strong> تحديث OTA أو تحديث يدوي لم يكتمل بشكل صحيح</li>
+              <li><strong>3. استبدال وحدة BCM بدون برمجتها:</strong> إذا استُبدلت BCM، يجب برمجتها بالإعداد الصحيح</li>
+              <li><strong>4. عدم تطابق بين وحدات السيارة:</strong> وحدة مستبدلة من سيارة أخرى بإعداد مختلف</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>الإصلاح الموصى به:</strong> إعادة برمجة الإعداد المركزي (Central Configuration) باستخدام برنامج JLR SDD (Subscribed Diagnostic System) أو Pathfinder (الجيل الأحدث). يقوم البرنامج بقراءة VIN وتحميل الإعداد الصحيح من خادم JLR ومطابقته مع الوحدات. يتطلب اشتراك JLR Topix.
+      </div>
+    </div>
+
+    <!-- ====== HVAC — 2 History ====== -->
+    <div class="section system-card">
+      <div class="section-title">
+        <h3>6. وحدة التحكم بالتكييف (HVAC)</h3>
+        <span class="badge history">2 كود — تاريخي</span>
+      </div>
+      <div class="meta">عدد الأكواد: 2 (كلاهما History)</div>
+      <table class="dtc-table">
+        <thead><tr><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="history-row"><td><strong>B13C2-49</strong></td><td>Windshield misting sensor — Internal electronic fault<br><small style="color:#666;">حساس ضباب الزجاج الأمامي — عطل إلكتروني داخلي</small></td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td><strong>B1417-15</strong></td><td>Left front climate seat thermal electric device 1 temperature sensor — Circuit short to battery or open<br><small style="color:#666;">حساس حرارة مقعد التكييف الأمامي الأيسر — دائرة مفتوحة أو قصر</small></td><td><span class="badge history">History</span></td></tr>
+        </tbody>
+      </table>
+      <div class="assessment warning">
+        <strong>التحليل الفني — B13C2 (حساس الضباب):</strong>
+        <div class="cause-box">
+          <div class="cause-title">السبب (تاريخي):</div>
+          <div class="cause-text">
+            حساس ضباب الزجاج الأمامي (Rain/Light/Mist Sensor) المثبّت خلف المرآة الداخلية. كود "عطل إلكتروني داخلي" تاريخي — حدث سابق، على الأرجح:
+            <ul>
+              <li>تذبذب جهد مؤقت عند تبديل البطارية</li>
+              <li>حرارة مرتفعة في الزجاج (وقوف في الشمس)</li>
+              <li>رطوبة مؤقتة في الموصل</li>
+            </ul>
+            <strong>غير حالي</strong> — الحساس يعمل الآن. إذا تكرر، يُفحص الموصل خلف المرآة.
+          </div>
+        </div>
+      </div>
+      <div class="assessment warning" style="margin-top:6px;">
+        <strong>التحليل الفني — B1417 (حساس حرارة مقعد التكييف):</strong>
+        <div class="cause-box" style="border-right-color:var(--danger);">
+          <div class="cause-title" style="color:var(--danger);">السبب (مرتبط بالإصلاح السابق في المقعد):</div>
+          <div class="cause-text">
+            مقعد الراكب الأمامي به نظام تكييف (تدفئة وتبريد كهربائي — Peltier). حساس الحرارة للجهاز الكهربائي الحراري (Thermoelectric Device). كود تاريخي — دائرة مفتوحة أو قصر. <strong>السبب المؤكد بالفحص الفيزيائي:</strong>
+            <ul>
+              <li><strong>الإصلاح السابق في المقعد الأمامي</strong> (المذكور في قسم PSM) أثّر على كابل حساس حرارة مقعد التكييف — نفس المنطقة، نفس الكابلات تحت المقعد</li>
+              <li>كابل الحساس انقطع أو خُلع أثناء الفك/التركيب</li>
+            </ul>
+            <strong>تاريخي</strong> — يعني أن الحساس عاد للعمل لاحقاً (ربما بعد تحريك المقعد)، لكن الكابل لا يزال غير مستقر. <strong>يُعالج مع إصلاح كابلات PSM في نفس العملية</strong> — يُفحص جميع كابلات المقعد معاً.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== History & Intermittent Summary ====== -->
+    <div class="section">
+      <div class="section-title">
+        <h3>7. الأكواد التاريخية والمتقطعة المتبقية (11 كود)</h3>
+        <span class="badge history">تاريخية / متقطعة</span>
+      </div>
+      <div class="assessment info">
+        <strong>ملاحظة هامة:</strong> الأكواد التالية إما <strong>تاريخية (History)</strong> — حدثت في الماضي ولم تعد متكررة — أو <strong>متقطعة (Intermittent)</strong> — تظهر أحياناً وتختفي. <strong>لا تمثل أعطالاً حالية</strong> ولا تتطلب إصلاحاً فورياً. تم تسجيلها لأغراض التوثيق والمراقبة.
+      </div>
+      <table class="dtc-table" style="margin-top:8px;">
+        <thead><tr><th>الوحدة</th><th>الكود</th><th>الوصف</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr class="history-row"><td>TCCM</td><td><strong>U2300-54</strong></td><td>Central configuration — Missing calibration</td><td><span class="badge history">History</span></td></tr>
+          <tr class="intermittent-row"><td>GWM</td><td><strong>B1412-87</strong></td><td>Quiescent relay box — Missing message</td><td><span class="badge intermittent">Intermittent</span></td></tr>
+          <tr class="history-row"><td>CHCM</td><td><strong>U0046-81</strong></td><td>Vehicle communication bus C — Invalid serial data received</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td>ICDM</td><td><strong>B14A2-02</strong></td><td>APIX2 display link — touch screen — General signal fault</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td>ICDM</td><td><strong>B14A2-13</strong></td><td>APIX2 display link — touch screen — Open circuit</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td>IDMA</td><td><strong>B14A2-02</strong></td><td>APIX2 display link — touch screen — General signal fault</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td>IDMA</td><td><strong>B14A2-13</strong></td><td>APIX2 display link — touch screen — Open circuit</td><td><span class="badge history">History</span></td></tr>
+          <tr class="intermittent-row"><td>IMC</td><td><strong>B1DE3-31</strong></td><td>Multimedia link — driver assistance domain controller — No signal</td><td><span class="badge intermittent">Intermittent</span></td></tr>
+          <tr class="history-row"><td>IPMA</td><td><strong>U0001-82</strong></td><td>High speed CAN — Alive/sequence counter incorrect</td><td><span class="badge history">History</span></td></tr>
+          <tr class="history-row"><td>IPMA</td><td><strong>U2300-56</strong></td><td>Central configuration — Invalid/incompatible configuration</td><td><span class="badge history">History</span></td></tr>
+          <tr class="intermittent-row"><td>PAM</td><td><strong>U2300-55</strong></td><td>Central configuration — Not configured</td><td><span class="badge intermittent">Intermittent</span></td></tr>
+        </tbody>
+      </table>
+      <div class="assessment info" style="margin-top:8px;">
+        <strong>تفسير الخبير:</strong>
+        <ul>
+          <li><strong>U2300-54 (TCCM):</strong> إعداد ناقل الحركة (Transfer Case) غير معاير — تاريخي. شائع بعد فصل البطارية. يحتاج معايرة بـ SDD إذا تكرر.</li>
+          <li><strong>B1412-87 (GWM):</strong> صندوق الريلاي الهادئ (Quiescent Relay Box) — رسالة مفقودة متقطعة. الريلاي يُفصل الأنظمة غير الأساسية عند إيقاف المحرك لتوفير البطارية. متقطع — لا يدعو للقلق.</li>
+          <li><strong>U0046-81 (CHCM):</strong> بيانات غير صالحة على CAN bus C — تاريخي. خلل اتصال لحظي — شائع عند إعادة تشغيل النظام.</li>
+          <li><strong>B14A2-02/13 (ICDM + IDMA):</strong> كودان مكرران في وحدتي العرض — رابط APIX2 (Pixel Link) للشاشة اللمسية. تاريخي — على الأرجح عند إعادة تشغيل الشاشة أو تحديثها. <strong>الشاشة تعمل حالياً</strong>.</li>
+          <li><strong>B1DE3-31 (IMC):</strong> رابط الوسائط بين نظام الترفيه ومتحكم المساعدة — متقطع. انقطاع لحظي في الاتصال.</li>
+          <li><strong>U0001-82 (IPMA):</strong> عداد تسلسلي CAN عالي السرعة غير محدّث — تاريخي. خلل اتصال لحظي.</li>
+          <li><strong>U2300-56 (IPMA):</strong> إعداد مركزي غير متوافق — تاريخي. مرتبط بنفس مشكلة الإعداد المركزي في BCM.</li>
+          <li><strong>U2300-55 (PAM):</strong> نظام مساعدة الركن (Parking Assist) غير مُعد — متقطع. شائع بعد فصل البطارية. إذا تكرر، يُعدّ بـ SDD.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ====== Clean Systems ====== -->
+    <div class="section">
+      <div class="section-title">
+        <h3>8. الأنظمة السليمة (31 نظام — 0 DTC)</h3>
+        <span class="badge pass">31 نظام سليم</span>
+      </div>
+      <div class="assessment success">
+        <strong>الأنظمة الحرجة السليمة:</strong>
+        <ul>
+          <li><strong>TCM (ناقل الحركة):</strong> سليم — صندوق تروس ZF 8HP يعمل بدون أعطال</li>
+          <li><strong>ABS (الفرامل):</strong> سليم — نظام منع الانغلاق يعمل</li>
+          <li><strong>RCM (الوسائد الهوائية):</strong> سليم — نظام الحماية الاختباري يعمل</li>
+          <li><strong>IPC (لوحة العدادات):</strong> سليم</li>
+          <li><strong>TPM (مراقب ضغط الإطارات):</strong> سليم</li>
+          <li><strong>SASM (حساس زاوية المقود):</strong> سليم</li>
+          <li><strong>PSCM (مقوى المقود الكهربائي):</strong> سليم</li>
+        </ul>
+      </div>
+      <div class="extra-grid" style="margin-top:8px;">
+        <span class="pass-chip">DDM (باب السائق)</span>
+        <span class="pass-chip">PDM (باب الراكب)</span>
+        <span class="pass-chip">DSM (مقعد السائق)</span>
+        <span class="pass-chip">DRDM (باب خلفي يسار)</span>
+        <span class="pass-chip">PRDM (باب خلفي يمين)</span>
+        <span class="pass-chip">RGTM (الباب الخلفي)</span>
+        <span class="pass-chip">AAM (مضخم الصوت)</span>
+        <span class="pass-chip">ATCM (التحكم بالتضاريس)</span>
+        <span class="pass-chip">CHCMB (تحكم الهيكل B)</span>
+        <span class="pass-chip">GSM (ناقل الحركة)</span>
+        <span class="pass-chip">HCM (المصابيح A)</span>
+        <span class="pass-chip">HCMB (المصابيح B)</span>
+        <span class="pass-chip">HUD (عرض على الزجاج)</span>
+        <span class="pass-chip">IPMB (معالجة الصور B)</span>
+        <span class="pass-chip">RFA (التحكم عن بعد)</span>
+        <span class="pass-chip">RGTMB (الباب الخلفي B)</span>
+        <span class="pass-chip">RHVAC (تكييف خلفي)</span>
+        <span class="pass-chip">SODL (كشف العوائق يسار)</span>
+        <span class="pass-chip">SODR (كشف العوائق يمين)</span>
+        <span class="pass-chip">SPMA (شد حزام A)</span>
+        <span class="pass-chip">SPMB (شد حزام B)</span>
+      </div>
+    </div>
+
+    <!-- ====== VIN ====== -->
+    <div class="section">
+      <div class="section-title"><h3>فحص VIN والمطابقة</h3></div>
+      <table class="vin-table">
+        <tbody>
+          <tr><td class="label">رقم VIN</td><td class="value">SALGS2SE4LA590806</td></tr>
+          <tr><td class="label">الموديل المسجل في الوحدات</td><td class="value">2020 / Land Rover / New Range Rover (L405) / 508PS AJ V8 5.0 SC Petrol</td></tr>
+          <tr><td class="label">Serial Number (Scanner)</td><td class="value">V37GSCV01299</td></tr>
+          <tr><td class="label">رقم أمر الإصلاح</td><td class="value">V37GSCV0129920260822042638654</td></tr>
+          <tr><td class="label">المسافة المسجلة (Odometer)</td><td class="value">40,918 km</td></tr>
+          <tr><td class="label">مطابقة VIN بين الوحدات</td><td class="value">متطابقة</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ====== Recommendations ====== -->
+    <div class="section">
+      <div class="section-title"><h3>التوصيات الفنية — مرتبة حسب الأولوية</h3></div>
+      <ul class="rec-list">
+        <li><span class="num danger">1</span><span><strong>محاذاة رادار ACC (عاجل — ميزة معطّلة):</strong> الكود C1A67-78 دائم — رادار التحكم التكيّفي بالسرعة غير محاذى. يُعاد محاذاته عند وكيل Land Rover أو ورشة متخصصة بجهاز JLR SDD/Pathfinder أو Autel مع ملحق المحاذاة. تكلفة معتدلة (~30–60 دقيقة عمل). حتى تُعمل المحاذاة، نظام ACC معطّل.</span></li>
+        <li><span class="num danger">2</span><span><strong>إصلاح كابلات مقعد الراكب (عاجل — ميزة معطّلة + إصلاح سابق):</strong> الكودان B1087-88 و B1545-87 دائمان — ناقل LIN لمقعد الراكب متوقف ووحدة التدليك لا تتلقى رسائل. <strong>الفحص الفيزيائي كشف عن إصلاح سابق في المقعد</strong> — وهو السبب المؤكد. يُرفع المقعد بالكامل، يُفحص جميع كابلات LIN والموصلات تحت المقعد (بما فيها كابل حساس حرارة مقعد التكييف — كود HVAC B1417)، وتُعاد توصيلها بشكل صحيح. يُنصح بفحص جميع الكابلات وليس فقط المعطّل، لأن الإصلاح السابق قد يكون أثّر على كابلات متعددة. تكلفة منخفضة (1–2 ساعة عمل). يُمسح الكود ويُعاد الفحص بعد الإصلاح.</span></li>
+        <li><span class="num warning">3</span><span><strong>فحص هوائيات التيليماتكس (مهم — ميزات اتصال معطّلة):</strong> 6 أكواد دائمة "Open Circuit" لوحدة TCU. يُفحص الصندوق الخلفي — التأكد من توصيل جميع كابلات الهوائيات (GPS, Wi-Fi, Cellular, BroadR-Reach). إذا كانت متصلة، فالمشكلة في تفعيل اشتراك InControl من الوكيل. لا يؤثر على القيادة — فقط على الميزات الاتصالية.</span></li>
+        <li><span class="num warning">4</span><span><strong>إعادة الإعداد المركزي (مهم — برمجة):</strong> الكود U2300-62 في BCM دائم — عدم تطابق في الإعداد المركزي. يُعدّ بـ JLR SDD أو Pathfinder بقراءة VIN وتحميل الإعداد الصحيح. يُفضل عمل هذا مع البند 5 (TCCM) و PAM لأنها نفس نوع المشكلة.</span></li>
+        <li><span class="num info">5</span><span><strong>مسح الأكواد التاريخية (روتيني):</strong> 15 كود تاريخي + 2 متقطع — جميعها أحداث سابقة لا تمثل أعطالاً حالية. يُمسح الكود التاريخي بعد إصلاح الأكواد الدائمة، ثم يُعاد الفحص بعد 100–200 كم للتأكد من عدم عودتها.</span></li>
+        <li><span class="num info">6</span><span><strong>مراقبة كود مضخة الوقود P0230:</strong> كود تاريخي — المضخة تعمل حالياً. إذا عاد الكود أو ظهرت أعراض (تقطيع، صعوبة تشغيل)، يُفحص ريلاي مضخة الوقود ووحدة FPDM — معروفة بأعطال الحرارة في LR.</span></li>
+        <li><span class="num">7</span><span><strong>الصيانة الدورية:</strong> عند 40,918 كم — تأكد من تغيير زيت المحرك (5W-30 أو حسب دليل JLR)، فلتر الهواء، فلتر الزيت، فحص مستوى سول التكييف. محرك V8 SC يتطلب زيتاً عالي الجودة وتغيير دوري كل 10,000 كم.</span></li>
+        <li><span class="num">8</span><span><strong>فحص سوبرتشارجر:</strong> عند 40,000 كم، السوبرتشارجر Roots-type لا يحتاج صيانة عاجلة، لكن يُفحص مستوى زيت السوبرتشارجر عند 60,000 كم. تأكد من عدم وجود أصوات غير طبيعية (صفير أو طحن).</span></li>
+        <li><span class="num">9</span><span><strong>فحص سول ناقل الحركة ZF 8HP:</strong> يُنصح بتغيير سول ZF 8HP عند 80,000–100,000 كم (أو حسب جدول JLR). عند 40,918 كم، السول لا يزال في حالة جيدة، لكن يُفحص مستوى السول.</span></li>
+        <li><span class="num">10</span><span><strong>إعادة الفحص:</strong> بعد إصلاح الأكواد الدائمة ومسح التاريخية، يُعاد الفحص بجهاز يدعم JLR (Autel MaxiSys أو JLR SDD) بعد 200 كم للتأكد من عدم عودة أي كود.</span></li>
+      </ul>
+    </div>
+
+    <div class="final-box">
+      <h3>⚠ التقييم النهائي — سيارة في حالة جيدة جداً مع صيانة مطلوبة</h3>
+      <p><strong>قابلية القيادة:</strong> ممتازة | <strong>المحرك V8 SC:</strong> سليم | <strong>ناقل الحركة:</strong> سليم | <strong>الفرامل والوسائد:</strong> سليمة</p>
+      <p style="margin-top:8px;">
+        السيارة في حالة ميكانيكية جيدة جداً — المحرك (5.0L V8 Supercharged، 508 PS)، ناقل الحركة (ZF 8HP)، الفرامل (ABS)، والوسائد الهوائية (RCM) جميعها سليمة بدون أي أعطال. الأكواد الـ 27 تنقسم إلى: <strong>15 تاريخياً</strong> (أحداث سابقة، لا تمثل مشاكل حالية)، <strong>2 متقطعين</strong> (يظهران أحياناً)، و<strong>10 دائمين</strong>. <strong>الفحص الفيزيائي كشف عن إصلاح سابق في المقعد الأمامي</strong> — يفسّر بشكل قاطع أكواد PSM (LIN bus + وحدة التدليك) وكود HVAC (حساس حرارة مقعد التكييف) — جميعها ناتجة عن كابلات غير موصولة بشكل صحيح بعد الإصلاح. باقي الأكواد الدائمة تتركّز في: نظام التيليماتكس (6 — هوائيات غير متصلة، شائع في المستوردة)، محاذاة رادار ACC (1)، وإعداد برمجي (1). <strong>لا يوجد أي عطل حالي في الأنظمة الحرجة</strong> (المحرك، الناقل، الفرامل، الوسائد). السيارة قابلة للقيادة بشكل آمن، وتحتاج صيانة لأنظمة الراحة والمساعدة فقط.
+      </p>
+    </div>
+
+    <div class="footer">
+      تم إنشاء التقرير بواسطة Auto Renew © 2026 — خبراء الفحص والتشخيص — هذا التقرير للاستعانة الفنية ولا يغني عن الفحص اليدوي.
+    </div>
+  </div>
+</div>
+</body>
+</html>
